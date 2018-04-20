@@ -1,4 +1,11 @@
 " Plugin Manager
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
 call plug#begin()
 Plug 'haya14busa/incsearch.vim' " Searching
 Plug 'janko-m/vim-test' 
@@ -17,6 +24,7 @@ Plug 'rking/ag.vim' " For searching
 Plug 'cespare/vim-toml'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-ruby/vim-ruby'
+Plug 'avakhov/vim-yaml'
 call plug#end()
 
 filetype on
@@ -44,7 +52,15 @@ nnoremap <C-p> :FuzzyOpen<CR>
 " Turn modelines (vim config at the start of the file) off
 let modelines=0
 
-set termguicolors
+if &term =~ '256color'
+    " disable background color erase
+    set t_ut=
+endif
+
+" enable 24 bit color support if supported
+if (has("termguicolors"))
+    set termguicolors
+endif
 colorscheme NeoSolarized
 set background=dark
 set guioptions-=m " Remove menu bar
