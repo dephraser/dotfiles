@@ -18,6 +18,7 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'christoomey/vim-tmux-navigator' " Navigation
 Plug 'junegunn/goyo.vim' " For writing
 Plug 'rking/ag.vim' " For searching
+Plug 'tpope/vim-sleuth'
 
 " Language support
 Plug 'cespare/vim-toml'
