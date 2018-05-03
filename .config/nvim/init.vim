@@ -19,6 +19,13 @@ Plug 'christoomey/vim-tmux-navigator' " Navigation
 Plug 'junegunn/goyo.vim' " For writing
 Plug 'rking/ag.vim' " For searching
 Plug 'tpope/vim-sleuth'
+Plug 'cohama/lexima.vim' " Autoclose pethernise
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
+Plug 'w0rp/ale'
 
 " Language support
 Plug 'cespare/vim-toml'
@@ -137,3 +144,49 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
+
+" Search files recursively ([o]pen file)
+nnoremap <silent> <leader>o :Files<CR>
+" Search git status (edited) [f]iles
+nnoremap <silent> <leader>f :GFiles?<CR>
+" Search in local buffer [c]ommits
+nnoremap <silent> <leader>c :BCommits<CR>
+" Search in all the project [C]ommits
+nnoremap <silent> <leader>C :Commits<CR>
+" Search between open files - [b]uffers
+nnoremap <silent> <leader>b :Buffers<CR>
+" Search in [l]ines on current buffer
+nnoremap <silent> <leader>l :BLines<CR>
+" Search in all the opened buffers [L]ines
+nnoremap <silent> <leader>L :Lines<CR>
+" Search in ultisnips [s]nippets
+nnoremap <silent> <leader>s :Snippets<CR>
+" Search in [m]arks
+nnoremap <silent> <leader>m :Marks<CR>
+" Search in edited files [h]istory
+nnoremap <silent> <leader>h :History<CR>
+" Search in search [/] history
+nnoremap <silent> <leader>/ :History/<CR>
+" Search in ag search
+nnoremap <silent> <leader>a :Ag
+"}}}
+
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+let g:monster#completion#rcodetools#backend = "async_rct_complete"
+let g:deoplete#sources#omni#input_patterns = {
+\   "ruby" : '[^. *\t]\.\w*\|\h\w*::'
+\}
+call deoplete#custom#source('buffer', 'rank', 501)
+
+" use tab
+imap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
