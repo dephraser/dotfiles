@@ -10,7 +10,7 @@ Plug 'haya14busa/incsearch.vim' " Searching
 Plug 'janko-m/vim-test' 
 Plug 'tpope/vim-commentary' " Commenting
 Plug 'tpope/vim-fugitive' " Git
-Plug 'cloudhead/neovim-fuzzy' " Opening files
+" Plug 'cloudhead/neovim-fuzzy' " Opening files
 Plug 'iCyMind/NeoSolarized'
 Plug 'jceb/vim-orgmode' " For todo list
 Plug 'tpope/vim-speeddating' " Dep of orgmode
@@ -26,6 +26,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 Plug 'w0rp/ale'
+Plug 'Chiel92/vim-autoformat'
 
 " Language support
 Plug 'cespare/vim-toml'
@@ -53,8 +54,8 @@ nnoremap k gk
 " Set relative line numbers on :Explore
 let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
 
-" Opening files 
-nnoremap <C-p> :FuzzyOpen<CR>
+" " Opening files 
+" nnoremap <C-p> :FuzzyOpen<CR>
 
 " Turn modelines (vim config at the start of the file) off
 let modelines=0
@@ -146,7 +147,7 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 " Search files recursively ([o]pen file)
-nnoremap <silent> <leader>o :Files<CR>
+nnoremap <silent> <C-p> :Files<CR>
 " Search git status (edited) [f]iles
 nnoremap <silent> <leader>f :GFiles?<CR>
 " Search in local buffer [c]ommits
